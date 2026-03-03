@@ -1,4 +1,6 @@
-# AI Crypto Trading Blog
+# ColdCircuit
+
+**AI-managed crypto, fully transparent.**
 
 Public-facing blog and content system for Josh Miner's AI-managed crypto portfolio.
 
