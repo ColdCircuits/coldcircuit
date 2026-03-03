@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trade Log | ColdCircuit</title>
+  <meta name="description" content="Complete history of all trades executed by the AI trading bot, with reasoning and results.">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="./index.html" class="logo">ColdCircuit</a>
+        <ul class="nav-links">
+          <li><a href="./index.html">Dashboard</a></li>
+          <li><a href="./trade-log.html" class="active">Trade Log</a></li>
+          <li><a href="./strategy.html">Strategy</a></li>
+          <li><a href="./about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="page-title">Trade Log</h1>
+      <p class="page-subtitle">Complete history of all trades with AI reasoning. Transparency first.</p>
+
+      <!-- Summary Stats -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Trades</div>
+          <div class="stat-value" id="total-trades">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Winning Trades</div>
+          <div class="stat-value positive" id="winning-trades">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Losing Trades</div>
+          <div class="stat-value negative" id="losing-trades">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Win Rate</div>
+          <div class="stat-value" id="win-rate">0%</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="card">
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="filter-btn active" onclick="filterTrades('all')">All</button>
+          <button class="filter-btn" onclick="filterTrades('buy')">Buys Only</button>
+          <button class="filter-btn" onclick="filterTrades('sell')">Sells Only</button>
+        </div>
+      </div>
+
+      <!-- Trade History -->
+      <div class="card">
+        <h2 class="card-title">All Trades</h2>
+        <div id="trade-history">
+          <div class="loading">Loading trade history...</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>AI-managed crypto trading experiment by Josh Miner</p>
+      <p>Data updated every 30 minutes. Not financial advice.</p>
+      <p><a href="https://twitter.com/ClankMiner" target="_blank">@ClankMiner</a></p>
+    </div>
+  </footer>
+
+  <style>
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent-blue);
+      color: white;
+      border-color: var(--accent-blue);
+    }
+  </style>
+
+  <script>
+    const TRADE_DATA = [{"timestamp": "2026-03-01T10:30:00Z", "action": "buy", "coin": "XLM", "amount": 85.3, "price": 0.215, "value_usd": 18.34, "reason": "RSI oversold (28), EMA(12) crossed above EMA(26), price above EMA(26). Strong bullish momentum signal."}, {"timestamp": "2026-03-01T14:00:00Z", "action": "buy", "coin": "SKY", "amount": 12.7, "price": 1.45, "value_usd": 18.42, "reason": "RSI at 25 (deeply oversold), EMA crossover confirmed. 24h volume $15M, strong liquidity."}, {"timestamp": "2026-03-01T18:30:00Z", "action": "buy", "coin": "ZEC", "amount": 0.42, "price": 43.2, "value_usd": 18.14, "reason": "Momentum rotation signal. ZEC showing +8% daily gain with RSI 32, stronger than XLM/SKY."}, {"timestamp": "2026-03-02T11:00:00Z", "action": "sell", "coin": "XLM", "amount": 85.3, "price": 0.238, "value_usd": 20.3, "reason": "Take profit triggered at +10.7% from entry. RSI now 68 (approaching overbought)."}];
+    const PERFORMANCE_DATA = {"total_trades": 4, "total_return_pct": -100.0, "current_value": 0, "win_rate": 0.5, "winning_trades": 2, "losing_trades": 2};
+    let currentFilter = 'all';
+
+    function renderStats() {
+      if (!PERFORMANCE_DATA) return;
+      
+      document.getElementById('total-trades').textContent = PERFORMANCE_DATA.total_trades;
+      document.getElementById('winning-trades').textContent = PERFORMANCE_DATA.winning_trades || 0;
+      document.getElementById('losing-trades').textContent = PERFORMANCE_DATA.losing_trades || 0;
+      document.getElementById('win-rate').textContent = 
+        (PERFORMANCE_DATA.win_rate * 100).toFixed(1) + '%';
+    }
+
+    function renderTrades(filter = 'all') {
+      if (!TRADE_DATA || TRADE_DATA.length === 0) {
+        document.getElementById('trade-history').innerHTML = 
+          '<div class="empty-state"><p>No trades yet. The bot is scanning for opportunities.</p></div>';
+        return;
+      }
+
+      const container = document.getElementById('trade-history');
+      container.innerHTML = '';
+
+      let filtered = TRADE_DATA;
+      if (filter === 'buy') {
+        filtered = TRADE_DATA.filter(t => t.action.toLowerCase() === 'buy');
+      } else if (filter === 'sell') {
+        filtered = TRADE_DATA.filter(t => t.action.toLowerCase() === 'sell');
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="empty-state"><p>No trades match this filter.</p></div>';
+        return;
+      }
+
+      filtered.reverse().forEach(trade => {
+        const tradeEl = document.createElement('div');
+        tradeEl.className = 'trade-entry';
+        
+        const date = new Date(trade.timestamp);
+        const actionClass = trade.action.toLowerCase();
+        
+        tradeEl.innerHTML = `
+          <div class="trade-header">
+            <div>
+              <span class="${actionClass}">${trade.action.toUpperCase()}</span>
+              <strong>${trade.coin}</strong>
+            </div>
+            <div class="trade-time">${date.toLocaleString()}</div>
+          </div>
+          <div class="trade-details">
+            <div class="trade-detail"><strong>Amount:</strong> ${trade.amount.toFixed(6)}</div>
+            <div class="trade-detail"><strong>Price:</strong> $${trade.price.toFixed(4)}</div>
+            <div class="trade-detail"><strong>Value:</strong> $${trade.value_usd.toFixed(2)}</div>
+          </div>
+          <div class="trade-reason">${trade.reason}</div>
+        `;
+        container.appendChild(tradeEl);
+      });
+    }
+
+    function filterTrades(filter) {
+      currentFilter = filter;
+      renderTrades(filter);
+      
+      // Update button states
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+    }
+
+    renderStats();
+    renderTrades();
+  </script>
+</body>
+</html>

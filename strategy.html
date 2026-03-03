@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategy | ColdCircuit</title>
+  <meta name="description" content="How the AI trading bot makes decisions: RSI + EMA swing trading with momentum rotation.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">ColdCircuit</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="trade-log.html">Trade Log</a></li>
+          <li><a href="strategy.html" class="active">Strategy</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="page-title">Trading Strategy</h1>
+      <p class="page-subtitle">How the AI makes decisions. Technical analysis meets momentum rotation.</p>
+
+      <div class="card">
+        <div class="strategy-section">
+          <h2>Overview</h2>
+          <p>
+            This portfolio is managed by an AI agent running on a 30-minute cron schedule. The bot uses a combination of technical indicators and momentum analysis to identify swing trading opportunities in liquid altcoins on Coinbase.
+          </p>
+          <p>
+            The strategy is transparent by design. Every trade is logged with the exact reasoning, making this a real-time case study in algorithmic trading.
+          </p>
+        </div>
+
+        <div class="strategy-section">
+          <h2>Core Strategy: RSI + EMA Swing Trading</h2>
+          <p>The bot uses two primary technical indicators:</p>
+          <ul>
+            <li><strong>RSI (Relative Strength Index)</strong> - 14-period RSI to identify oversold (RSI &lt; 30) and overbought (RSI &gt; 70) conditions</li>
+            <li><strong>EMA Crossover</strong> - 12-period and 26-period exponential moving averages to confirm trend direction</li>
+          </ul>
+          
+          <h3>Buy Signal</h3>
+          <div class="code-block">
+            - RSI &lt; 30 (oversold)<br>
+            - EMA(12) crosses above EMA(26) (bullish momentum)<br>
+            - Price is above EMA(26) (uptrend confirmation)
+          </div>
+
+          <h3>Sell Signal</h3>
+          <div class="code-block">
+            - RSI &gt; 70 (overbought)<br>
+            - EMA(12) crosses below EMA(26) (bearish momentum)<br>
+            - OR stop-loss triggered (-8%)<br>
+            - OR take-profit triggered (+15%)
+          </div>
+        </div>
+
+        <div class="strategy-section">
+          <h2>Momentum Rotation</h2>
+          <p>
+            In addition to swing trading current positions, the bot actively scans a universe of 15+ liquid altcoins for rotation opportunities. If a non-held coin shows stronger momentum than current holdings, the bot will rotate capital.
+          </p>
+          <p><strong>Rotation criteria:</strong></p>
+          <ul>
+            <li>24-hour volume &gt; $10M (liquidity threshold)</li>
+            <li>RSI divergence from current positions</li>
+            <li>Strong EMA crossover signal</li>
+            <li>Recent price momentum &gt; 5%</li>
+          </ul>
+        </div>
+
+        <div class="strategy-section">
+          <h2>Risk Management</h2>
+          <p>Strict rules to prevent overtrading and catastrophic losses:</p>
+          <ul>
+            <li><strong>Stop-loss:</strong> Automatic sell at -8% from entry</li>
+            <li><strong>Take-profit:</strong> Automatic sell at +15% from entry</li>
+            <li><strong>Daily trade limit:</strong> Maximum 2 trades per day</li>
+            <li><strong>Portfolio pause:</strong> If total value drops below $40, trading pauses until manual review</li>
+            <li><strong>Position sizing:</strong> Equal-weight allocation across 2-3 positions (no single-asset concentration)</li>
+          </ul>
+        </div>
+
+        <div class="strategy-section">
+          <h2>Why AI-Managed?</h2>
+          <p>
+            Human traders struggle with discipline, emotion, and consistency. An algorithmic approach removes these variables:
+          </p>
+          <ul>
+            <li><strong>No FOMO</strong> - The bot doesn't chase pumps or panic sell</li>
+            <li><strong>Consistent execution</strong> - Same rules applied every cycle, no exceptions</li>
+            <li><strong>24/7 monitoring</strong> - Scans markets every 30 minutes, never sleeps</li>
+            <li><strong>Data-driven</strong> - Decisions based purely on technical indicators, not narratives or hype</li>
+          </ul>
+        </div>
+
+        <div class="strategy-section">
+          <h2>Trade Universe</h2>
+          <p>The bot actively trades or monitors these assets:</p>
+          <div class="code-block">
+            BTC, ETH, SOL, DOGE, ADA, AVAX, LINK, DOT, MATIC,<br>
+            XLM, SKY, ZEC, NEAR, FET, ALGO
+          </div>
+          <p>Selection criteria: High liquidity on Coinbase, proven volatility for swing trading, avoid memecoins without utility.</p>
+        </div>
+
+        <div class="strategy-section">
+          <h2>Execution</h2>
+          <p><strong>Platform:</strong> Coinbase Advanced Trade API</p>
+          <p><strong>Schedule:</strong> Runs every 30 minutes via cron</p>
+          <p><strong>Order type:</strong> Market orders (immediate execution, no slippage risk from limit order delays)</p>
+          <p><strong>Code:</strong> Open-source Python script using <code>ta</code> library for indicators</p>
+        </div>
+
+        <div class="strategy-section">
+          <h2>What This Is Not</h2>
+          <p>
+            This is an experiment, not financial advice. The goal is to learn, iterate, and share lessons transparently. 
+            Small position size ($55 starting capital) means low stakes and high learning.
+          </p>
+          <p>
+            I am not a professional trader. I am a Stanford MBA student and semiconductor investor testing whether algorithmic 
+            discipline can outperform human discretion in crypto markets.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>AI-managed crypto trading experiment by Josh Miner</p>
+      <p>Data updated every 30 minutes. Not financial advice.</p>
+      <p><a href="https://twitter.com/ClankMiner" target="_blank">@ClankMiner</a></p>
+    </div>
+  </footer>
+</body>
+</html>

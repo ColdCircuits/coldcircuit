@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | ColdCircuit</title>
+  <meta name="description" content="About Josh Miner and the AI crypto trading experiment.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">ColdCircuit</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="trade-log.html">Trade Log</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="about-hero">
+        <h1 class="page-title">About This Experiment</h1>
+        <p class="page-subtitle">Transparency, learning, and algorithmic discipline</p>
+      </div>
+
+      <div class="card">
+        <div class="about-content">
+          <h2>Who I Am</h2>
+          <p>
+            I'm Josh Miner, an MBA student at Stanford Graduate School of Business. My background is in semiconductor 
+            investing and private equity, focused on the infrastructure layer of computing: chips, packaging, materials, 
+            and equipment.
+          </p>
+          <p>
+            I spend my days analyzing TSMC's roadmap, ASML's EUV systems, and chiplet architecture. Crypto trading 
+            is not my day job.
+          </p>
+
+          <h2>Why This Project</h2>
+          <p>
+            I wanted to test a hypothesis: can algorithmic discipline beat human emotion in a volatile market like crypto?
+          </p>
+          <p>
+            Most retail traders lose money because they chase pumps, panic sell, and lack consistency. I built an AI agent 
+            to remove those variables. The bot doesn't feel FOMO. It doesn't get scared. It just executes a pre-defined 
+            strategy, every 30 minutes, without exception.
+          </p>
+          <p>
+            This is a learning experiment with real money. The position size is small ($55) to keep stakes low while the 
+            strategy is validated. If it works, I'll scale up. If it fails, the lessons are worth more than the capital.
+          </p>
+
+          <h2>The Rules</h2>
+          <p>
+            <strong>1. Total transparency.</strong> Every trade is logged with reasoning. No cherry-picking winners. 
+            The full history is public.
+          </p>
+          <p>
+            <strong>2. No manual intervention.</strong> I don't override the bot. If I disagree with a trade, I update 
+            the code, not the order.
+          </p>
+          <p>
+            <strong>3. Continuous iteration.</strong> This is version 1.0. The strategy will evolve based on performance 
+            data, but all changes are documented.
+          </p>
+          <p>
+            <strong>4. Education first.</strong> The goal is not to get rich quick. It's to learn, share insights, and 
+            build credibility in systematic trading.
+          </p>
+
+          <h2>What I'm Learning</h2>
+          <p>
+            Early observations (portfolio is only a few days old):
+          </p>
+          <ul>
+            <li>Technical indicators work better in trending markets than choppy sideways action</li>
+            <li>Low-cap altcoins have insane volatility (both good and bad)</li>
+            <li>Stop-losses prevent catastrophic losses but also cut winners short in volatile swings</li>
+            <li>Momentum rotation is effective but requires tight execution to avoid whipsaws</li>
+          </ul>
+          <p>
+            I'm tracking metrics like Sharpe ratio, max drawdown, and expectancy to measure performance objectively. 
+            The goal is not to outperform Bitcoin, but to outperform a human discretionary trader with the same strategy.
+          </p>
+
+          <h2>The Stack</h2>
+          <p>
+            <strong>Trading:</strong> Python script using Coinbase Advanced Trade API, <code>ta</code> library for 
+            technical indicators, and <code>pandas</code> for data analysis.
+          </p>
+          <p>
+            <strong>Execution:</strong> Cron job running every 30 minutes on a Mac mini.
+          </p>
+          <p>
+            <strong>Tracking:</strong> Trade log stored as JSON, daily performance snapshots, SVG charts generated 
+            via Python.
+          </p>
+          <p>
+            <strong>Blog:</strong> Static HTML/CSS site, auto-updated daily by a Python script that reads trade data 
+            and regenerates pages.
+          </p>
+
+          <h2>What's Next</h2>
+          <p>
+            <strong>Short-term:</strong> Validate the core RSI + EMA strategy over 30-60 days. Track win rate, expectancy, 
+            and drawdown. Tune parameters based on performance.
+          </p>
+          <p>
+            <strong>Medium-term:</strong> Add sentiment analysis (Reddit, Twitter) as a secondary signal. Test mean-reversion 
+            strategies for range-bound markets.
+          </p>
+          <p>
+            <strong>Long-term:</strong> If the strategy proves profitable, scale up capital and explore multi-strategy 
+            portfolio allocation (momentum + mean-reversion + arbitrage).
+          </p>
+
+          <h2>Connect</h2>
+          <p>
+            I'm documenting this journey on Twitter/X: <a href="https://twitter.com/ClankMiner" target="_blank">@ClankMiner</a>
+          </p>
+          <p>
+            Daily trade updates, weekly performance summaries, and lessons learned. No hype, just data.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>AI-managed crypto trading experiment by Josh Miner</p>
+      <p>Data updated every 30 minutes. Not financial advice.</p>
+      <p><a href="https://twitter.com/ClankMiner" target="_blank">@ClankMiner</a></p>
+    </div>
+  </footer>
+</body>
+</html>
