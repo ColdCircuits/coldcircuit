@@ -94,8 +94,8 @@
   </style>
 
   <script>
-    const TRADE_DATA = [{"timestamp": "2026-03-01T10:30:00Z", "action": "buy", "coin": "XLM", "amount": 85.3, "price": 0.215, "value_usd": 18.34, "reason": "RSI oversold (28), EMA(12) crossed above EMA(26), price above EMA(26). Strong bullish momentum signal."}, {"timestamp": "2026-03-01T14:00:00Z", "action": "buy", "coin": "SKY", "amount": 12.7, "price": 1.45, "value_usd": 18.42, "reason": "RSI at 25 (deeply oversold), EMA crossover confirmed. 24h volume $15M, strong liquidity."}, {"timestamp": "2026-03-01T18:30:00Z", "action": "buy", "coin": "ZEC", "amount": 0.42, "price": 43.2, "value_usd": 18.14, "reason": "Momentum rotation signal. ZEC showing +8% daily gain with RSI 32, stronger than XLM/SKY."}, {"timestamp": "2026-03-02T11:00:00Z", "action": "sell", "coin": "XLM", "amount": 85.3, "price": 0.238, "value_usd": 20.3, "reason": "Take profit triggered at +10.7% from entry. RSI now 68 (approaching overbought)."}];
-    const PERFORMANCE_DATA = {"total_trades": 4, "total_return_pct": 1.0820759904180088, "current_value": 55.595141794729905, "win_rate": 0.5, "winning_trades": 2, "losing_trades": 2};
+    const TRADE_DATA = [];
+    const PERFORMANCE_DATA = {"total_trades": 0, "total_return_pct": 0, "current_value": 55.0, "win_rate": 0, "winning_trades": 0, "losing_trades": 0};
     let currentFilter = 'all';
 
     function renderStats() {
