@@ -112,9 +112,9 @@
 
   <script>
     // This will be populated by blog-updater.py
-    const PORTFOLIO_DATA = {"total_value": 59.2105490029984, "positions": [{"coin": "XLM", "amount": 170.77245584, "price": 0.167568, "value": 28.615998880197118, "value_usd": 28.615998880197118, "allocation_pct": 48.32922403531171}, {"coin": "SKY", "amount": 273.2932272, "price": 0.07378, "value": 20.163574302816, "value_usd": 20.163574302816, "allocation_pct": 34.05402355211218}, {"coin": "ZEC", "amount": 0.04572161, "price": 226.13, "value": 10.3390276693, "value_usd": 10.3390276693, "allocation_pct": 17.461462262031105}, {"coin": "USD", "amount": 0.0809911604030556, "price": 1.0, "value": 0.0809911604030556, "value_usd": 0.0809911604030556, "allocation_pct": 0.1367850184921512}], "timestamp": "2026-03-31T01:00:29.660180+00:00"};
+    const PORTFOLIO_DATA = {"total_value": 0, "positions": [], "timestamp": "2026-04-03T01:00:25.792721+00:00"};
     const TRADE_DATA = [];
-    const PERFORMANCE_DATA = {"total_trades": 0, "total_return_pct": 7.65554364181527, "current_value": 59.2105490029984, "win_rate": 0, "winning_trades": 0, "losing_trades": 0};
+    const PERFORMANCE_DATA = {"total_trades": 0, "total_return_pct": 0.0, "current_value": 55.0, "win_rate": 0, "winning_trades": 0, "losing_trades": 0};
 
     // Render portfolio value
     function renderStats() {
@@ -215,7 +215,7 @@
       <text x="40" y="20" fill="#9ca3af" font-size="12">$55</text>
       <text x="40" y="190" fill="#9ca3af" font-size="12">$0</text>
     </svg>';
-      document.getElementById('allocation-chart').innerHTML = '<svg width="100%" height="250" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">      <path d="M 100,100 L 180.0,100.0 A 80,80 0 0,1 20.44041011902175,108.38281921375753 Z" fill="#3b82f6"/><text x="105.77113639164935" y="209.84850469964977" text-anchor="middle" fill="#3b82f6" font-size="12" font-weight="600">XLM</text><text x="105.77113639164935" y="224.84850469964977" text-anchor="middle" fill="#9ca3af" font-size="10">48.3%</text><path d="M 100,100 L 20.44041011902175,108.38281921375753 A 80,80 0 0,1 135.7953698949015,28.45496876730587 Z" fill="#10b981"/><text x="37.35155268080301" y="9.583341974535472" text-anchor="middle" fill="#10b981" font-size="12" font-weight="600">SKY</text><text x="37.35155268080301" y="24.58334197453547" text-anchor="middle" fill="#9ca3af" font-size="10">34.1%</text><path d="M 100,100 L 135.7953698949015,28.45496876730587 A 80,80 0 0,1 179.99619193717677,99.21943895153879 Z" fill="#f59e0b"/><text x="193.29579178671185" y="41.72568975191119" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="600">ZEC</text><text x="193.29579178671185" y="56.72568975191119" text-anchor="middle" fill="#9ca3af" font-size="10">17.5%</text><path d="M 100,100 L 179.99619193717677,99.21943895153879 A 80,80 0 0,1 179.99994592406264,99.90698308190068 Z" fill="#ef4444"/><text x="209.99836040221084" y="99.39940960269625" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="600">USD</text><text x="209.99836040221084" y="114.39940960269625" text-anchor="middle" fill="#9ca3af" font-size="10">0.1%</text>    </svg>';
+      document.getElementById('allocation-chart').innerHTML = '<svg width="100%" height="200" viewBox="0 0 300 200"><text x="150" y="100" text-anchor="middle" fill="#9ca3af">No positions</text></svg>';
     }
 
     // Newsletter signup
